@@ -55,4 +55,12 @@ public class Vitals {
     public void setPulseRate(Integer pulseRate) {
         this.pulseRate = pulseRate;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(height).append(" ").append(weight).append(" ").append(temperature).append(" ").append(bloodPressureHigh)
+                .append(" ").append(bloodPressureLow).append(" ").append(pulseRate);
+        return sb.toString();
+    }
 }

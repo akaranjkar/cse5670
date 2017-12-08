@@ -2,7 +2,7 @@ package edu.fit.cse5670;
 
 import java.util.Date;
 
-public class Session {
+public abstract class Session {
     private Integer sessionID;
     private Date date;
     private Vitals vitals;
@@ -57,4 +57,6 @@ public class Session {
     public void setNurseID(Integer nurseID) {
         this.nurseID = nurseID;
     }
+
+    public abstract void printSessionDetails();
 }

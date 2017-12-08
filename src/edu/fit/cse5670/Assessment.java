@@ -28,4 +28,11 @@ public class Assessment {
     public void setRecommendations(String recommendations) {
         this.recommendations = recommendations;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(symptoms).append("\n").append(diagnosis).append("\n").append(recommendations);
+        return sb.toString();
+    }
 }
