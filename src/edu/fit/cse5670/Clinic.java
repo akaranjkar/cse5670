@@ -3,6 +3,7 @@ package edu.fit.cse5670;
 public class Clinic {
     private String name;
     private Address address;
+    private String phone;
 
     public String getName() {
         return name;
@@ -20,13 +21,11 @@ public class Clinic {
         this.address = address;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    private Integer phone;
 }
