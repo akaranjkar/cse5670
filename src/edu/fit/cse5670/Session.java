@@ -10,6 +10,11 @@ public class Session {
     private Integer doctorID;
     private Integer nurseID;
 
+    public Session(Date date, Integer nurseID) {
+        this.date = date;
+        this.nurseID = nurseID;
+    }
+
     public Integer getSessionID() {
         return sessionID;
     }

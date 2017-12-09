@@ -8,6 +8,15 @@ public class Vitals {
     private Integer bloodPressureLow;
     private Integer pulseRate;
 
+    public Vitals(Double height, Double weight, Double temperature, Integer bloodPressureHigh, Integer bloodPressureLow, Integer pulseRate) {
+        this.height = height;
+        this.weight = weight;
+        this.temperature = temperature;
+        this.bloodPressureHigh = bloodPressureHigh;
+        this.bloodPressureLow = bloodPressureLow;
+        this.pulseRate = pulseRate;
+    }
+
     public Double getHeight() {
         return height;
     }

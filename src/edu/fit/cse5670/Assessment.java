@@ -5,6 +5,12 @@ public class Assessment {
     private String diagnosis;
     private String recommendations;
 
+    public Assessment(String symptoms, String diagnosis, String recommendations) {
+        this.symptoms = symptoms;
+        this.diagnosis = diagnosis;
+        this.recommendations = recommendations;
+    }
+
     public String getSymptoms() {
         return symptoms;
     }

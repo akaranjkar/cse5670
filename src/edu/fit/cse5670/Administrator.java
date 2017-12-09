@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Administrator extends Employee {
     @Override
     public void startEmployeeSession(Scanner scn) {
-        System.out.println("Name: ");
+        System.out.println("First Name: ");
         String firstName = scn.nextLine();
         System.out.println("Last Name: ");
         String lastName = scn.nextLine();
@@ -16,5 +16,6 @@ public class Administrator extends Employee {
         Date date = parseDate(scn.nextLine());
         System.out.println("Phone Number: ");
         String phoneNumber = scn.nextLine();
+
     }
 }
