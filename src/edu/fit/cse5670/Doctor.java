@@ -1,5 +1,7 @@
 package edu.fit.cse5670;
 
+import java.util.Scanner;
+
 public class Doctor extends Employee{
 
     String specialization;
@@ -12,5 +14,9 @@ public class Doctor extends Employee{
         this.specialization = specialization;
     }
 
+    @Override
+    public void startSession(Scanner scn) {
+
+    }
 }
 

@@ -1,4 +1,4 @@
-package database;
+package edu.fit.cse5670;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +13,7 @@ public class ConnectionFactory {
 
     // Database credentials
     static final String USER = "root";
-    static final String PASS = "group14";
+    static final String PASS = "root";
 
     public static synchronized Connection getConnection() {
 

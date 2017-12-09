@@ -1,9 +1,13 @@
 package edu.fit.cse5670;
 
+import java.util.Scanner;
+
 public abstract class Employee extends Person {
     private int employeeID;
     private int salary;
     private boolean fullTime;
+
+    public abstract void startSession(Scanner scn);
 
     public int getEmployeeID() {
         return employeeID;
