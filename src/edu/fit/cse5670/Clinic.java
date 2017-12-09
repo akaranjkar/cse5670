@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Clinic {
     private String name;
-    private Address address;
+    private String address;
     private String phone;
     private List<Employee> employees;
 
@@ -16,11 +16,11 @@ public class Clinic {
         this.name = name;
     }
 
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

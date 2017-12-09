@@ -7,6 +7,12 @@ public class HCPolicy {
     private String provider;
     private Date expiryDate;
 
+    public HCPolicy(Integer policyID, String provider, Date expiryDate) {
+        this.policyID = policyID;
+        this.provider = provider;
+        this.expiryDate = expiryDate;
+    }
+
     public Integer getPolicyID() {
         return policyID;
     }

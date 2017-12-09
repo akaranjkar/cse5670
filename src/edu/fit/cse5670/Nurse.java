@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Nurse extends Employee {
     @Override
-    public void startSession(Scanner scn) {
+    public void startEmployeeSession(Scanner scn) {
 
     }
 }

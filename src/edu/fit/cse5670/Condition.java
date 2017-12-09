@@ -4,11 +4,13 @@ import java.util.List;
 
 public class Condition {
     private Integer conditionID;
+
     private String mainDiagnosis;
-    private Session session;
+    private List<Session> sessions;
 
     public Condition() {
-        session = null;
+        this.mainDiagnosis = null;
+        this.sessions = null;
     }
 
     public Integer getConditionID() {
@@ -27,19 +29,19 @@ public class Condition {
         this.mainDiagnosis = mainDiagnosis;
     }
 
-    public Session getSession() {
-        return session;
+    public List<Session> getSession() {
+        return sessions;
     }
 
-    public void setSession(Session session) {
-        this.session = session;
+    public void setSession(List<Session> session) {
+        this.sessions = session;
     }
 
-    public void startSession() {
-        if (session == null) {
-            session = new FirstSession();
-        } else {
-            session = new SessionDecorator(session);
-        }
-    }
+//    public void startSession() {
+//        if (session == null) {
+//            session = new FirstSession();
+//        } else {
+//            session = new SessionDecorator(session);
+//        }
+//    }
 }

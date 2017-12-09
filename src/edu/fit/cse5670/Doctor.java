@@ -15,7 +15,7 @@ public class Doctor extends Employee{
     }
 
     @Override
-    public void startSession(Scanner scn) {
+    public void startEmployeeSession(Scanner scn) {
 
     }
 }

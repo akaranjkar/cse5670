@@ -21,6 +21,6 @@ public class PDMS {
         String password = scn.nextLine();
 
         Employee employee = EmployeeFactory.getInstance().getEmployee(username, password);
-        employee.startSession(scn);
+        employee.startEmployeeSession(scn);
     }
 }
