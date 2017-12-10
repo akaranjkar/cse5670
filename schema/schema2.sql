@@ -90,6 +90,8 @@ CREATE TABLE sessions (
     height int, 
     weight int,
     bodytemp int,
+    bphigh int,
+    bplow int,
     pulse int,
     
     
