@@ -112,31 +112,38 @@ public class QueryBuilder {
         }
         return condition;
     }
-
-    public static int updateCondition(Condition condition,int conditionID) {
+    public static int insertCondition(Condition condition,int patientID) {
         StringBuilder query;
-        if(conditionID ==0) {
-            query = new StringBuilder("insert into condition_ (patientID,maindiagnosis,closed) values(?,?,?)");
-        }else{
-            query = new StringBuilder("update condition_ set patientID=?,maindiagnosis=?,closed=?) where conditionID="+conditionID);
-        }
-        int success= DBManager.updateCondition(query, condition,11);
+        query = new StringBuilder("insert into condition_ (patientID,maindiagnosis,closed) values(?,?,?)");
+        int conditionID= DBManager.updateCondition(query, condition,patientID);
 
-        return success;
+        return conditionID;
     }
 
-    public static int updateSession(Session session,int sessionID, int conditionID) {
-        StringBuilder query;
-        if(sessionID ==0) {
-            query = new StringBuilder("insert into sessions(conditionID,visitdate,assessment,doctorID,nurseID,symptoms,diagnosis,recommendation,height,weight,bodytemp,bphigh,bplow,pulse)\n" +
+    public static int updateCondition(Condition condition) {
+        StringBuilder query = new StringBuilder("update condition_ set patientID=?,maindiagnosis=?,closed=?) where conditionID="+condition.getConditionID());
+
+        int patientID = getPatientIDFromConditionID(condition.getConditionID());
+        int conditionID= DBManager.updateCondition(query, condition,patientID);
+
+        return conditionID;
+    }
+
+    public static int insertSession(Session session, int conditionID) {
+        StringBuilder query = new StringBuilder("insert into sessions(conditionID,visitdate,assessment,doctorID,nurseID,symptoms,diagnosis,recommendation,height,weight,bodytemp,bphigh,bplow,pulse)\n" +
                     "   values(?, ?,?, ?,?,?,?, ?,?,?,?,?,?,?)");
-        }else{
-            query = new StringBuilder("update sessions set conditionID=?,visitdate=?,assessment=?,doctorID=?,nurseID=?,symptoms=?,diagnosis =?,recommendation=?,height=?,weight=?,bodytemp=?,bphigh=?,bplow=?,pulse=?) where sessionID="+sessionID);
-        }
 
-        int success= DBManager.updateSession(query, session,conditionID);
+        int sessionID= DBManager.updateSession(query, session,conditionID);
 
-        return success;
+        return sessionID;
+    }
+
+    public static int updateSession(Session session, int conditionID) {
+        StringBuilder query = new StringBuilder("update sessions set conditionID=?,visitdate=?,assessment=?,doctorID=?,nurseID=?,symptoms=?,diagnosis =?,recommendation=?,height=?,weight=?,bodytemp=?,bphigh=?,bplow=?,pulse=?) where sessionID="+session.getSessionID());
+
+        int sessionID= DBManager.updateSession(query, session,conditionID);
+
+        return sessionID;
     }
 
     public static List<Session> getSessions(int conditionID) {
@@ -199,6 +206,21 @@ public class QueryBuilder {
             e.printStackTrace();
         }
         return conditionID;
+
+    }
+
+    public static int getPatientIDFromConditionID(int conditionID) {
+        StringBuilder query = new StringBuilder("select patientID from condition_ where conditionID=" + conditionID);
+        ResultSet rs = DBManager.getQuery(query);
+//        int conditionID = 0;
+        int patientID=0;
+        try {
+            rs.last();
+            patientID = rs.getInt("patientID");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return patientID;
 
     }
 }
