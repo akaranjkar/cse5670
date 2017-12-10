@@ -1,10 +1,6 @@
 package edu.fit.cse5670;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 
 public class DBManager {
@@ -38,7 +34,7 @@ public class DBManager {
             try {
                 if (conn != null){
                     conn.close();
-                    System.out.println("CLosing connection");
+                    System.out.println("Closing connection");
                 }
             } catch (SQLException se) {
                 se.printStackTrace();
@@ -47,6 +43,35 @@ public class DBManager {
         return rs;
     }
 
+
+    public static void updateQuery(StringBuilder sql) {
+        Connection conn = null;
+        PreparedStatement stmt= null;
+        try {
+            conn = ConnectionFactory.getConnection();
+            System.out.println("Creating statement...");
+            stmt = conn.prepareStatement(sql.toString());
+            stmt.executeUpdate();
+        } catch (SQLException se) {
+            //Handle errors for JDBC
+            se.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (stmt != null)
+                    stmt.close();
+            } catch (SQLException se2) {
+            }// nothing we can do
+            try {
+                if (conn != null){
+                    conn.close();
+                    System.out.println("Closing connection");
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+    }
 
 //    public static void getQuery() {
 //        Connection conn = null;
