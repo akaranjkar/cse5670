@@ -23,7 +23,7 @@ CREATE TABLE login (
 	employeeID int not null,
     username varchar(30) not null,
     passwd varchar(30) not null,
-    PRIMARY KEY (employeeID),
+    PRIMARY KEY (employeeID,username),
     FOREIGN KEY (employeeID) REFERENCES employee(employeeID)
     
 );
