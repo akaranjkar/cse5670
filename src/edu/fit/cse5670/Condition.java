@@ -1,5 +1,6 @@
 package edu.fit.cse5670;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Condition {
@@ -7,10 +8,12 @@ public class Condition {
 
     private String mainDiagnosis;
     private List<Session> sessions;
+    private boolean closed;
 
     public Condition() {
         this.mainDiagnosis = null;
-        this.sessions = null;
+        this.sessions = new ArrayList<Session>();
+        this.closed = false;
     }
 
     public Integer getConditionID() {
@@ -37,7 +40,15 @@ public class Condition {
         this.sessions = session;
     }
 
-//    public void startSession() {
+    public boolean isClosed() {
+        return closed;
+    }
+
+    public void setClosed(boolean closed) {
+        this.closed = closed;
+    }
+
+    //    public void startSession() {
 //        if (session == null) {
 //            session = new FirstSession();
 //        } else {
