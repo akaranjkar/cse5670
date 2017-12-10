@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class QueryBuilder {
-    public Patient getPatient(int patientID){
+    public static Patient getPatient(int patientID){
         Patient patient = null;
 
         try {
@@ -28,7 +28,7 @@ public class QueryBuilder {
         return patient;
     }
 
-    public Doctor getDoctor(int empID){
+    public static Doctor getDoctor(int empID){
         Doctor employee = null;
 
         try {
@@ -47,7 +47,7 @@ public class QueryBuilder {
         }
         return employee;
     }
-    private HCPolicy getPolicy(int policyID){
+    private static HCPolicy getPolicy(int policyID){
         HCPolicy policy = null;
         try {
             StringBuilder query = new StringBuilder("select * from policy where policy="+policyID);
@@ -64,7 +64,7 @@ public class QueryBuilder {
 
     }
 
-    public List<Condition> getConditions(int patientID, boolean all){
+    public static List<Condition> getConditions(int patientID, boolean all){
         List<Condition> conditions = new ArrayList<Condition>();
         try {
             StringBuilder query = new StringBuilder("select * from condition_ where patientID="+patientID);
@@ -91,7 +91,7 @@ public class QueryBuilder {
         return conditions;
     }
 
-    public List<Session> getSessions(int conditionID){
+    public static List<Session> getSessions(int conditionID){
         List<Session> sessions = new ArrayList<Session>();
         try {
             StringBuilder query = new StringBuilder("select * from sessions where conditionID="+conditionID);
