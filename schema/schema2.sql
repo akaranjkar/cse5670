@@ -87,9 +87,9 @@ CREATE TABLE sessions (
     diagnosis varchar(50), 
     recommendation varchar(50),
     
-    height int, 
-    weight int,
-    bodytemp int,
+    height FLOAT(5,2),
+    weight FLOAT(5,2),
+    bodytemp FLOAT(5,2),
     bphigh int,
     bplow int,
     pulse int,
