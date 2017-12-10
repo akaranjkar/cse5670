@@ -6,6 +6,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class Receptionist extends Employee {
@@ -28,36 +30,34 @@ public class Receptionist extends Employee {
     private void printRecord(Scanner scn) {
         System.out.println("Enter patient ID: ");
         int patientID = scn.nextInt();
-        StringBuilder sb = new StringBuilder("select * from condition_ where patientID = '").append(patientID).append("';");
-        ResultSet rs = DBManager.getQuery(sb);
-        try {
-            while (rs.next()) {
-                int id = rs.getInt("patientID");
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        //TODO get patient data from db
+        Patient patient = QueryBuilder.getPatient(patientID);
         //TODO print data
     }
 
     private void RetrievePatientData(Scanner scn) {
         System.out.println("Enter patient ID: ");
         int patientID = scn.nextInt();
-        //TODO get patient data from db
+        Patient patient = QueryBuilder.getPatient(patientID);
         System.out.println("Start consultation for a new condition: Y/N ");
         String choice = scn.nextLine();
+        Condition condition;
         if(choice.equals("Y")){
-            Condition condition = new Condition();
+            condition = new Condition();
             //TODO add condition to DB and update condition ID
             //TODO add condition to patient
         }else{
-            //TODO retrieve open conditions and print the ID and the main diagnosis
+            List<Condition> openConditions = QueryBuilder.getConditions(patientID, false);
+            Iterator<Condition> iterator = openConditions.iterator();
+            int i = 1;
+            while(iterator.hasNext()){
+                Condition cond = iterator.next();
+                StringBuilder sb = new StringBuilder(i).append(") ID: ").append(cond.getConditionID()).append(" ").append(cond.getMainDiagnosis());
+                System.out.println(sb.toString());
+            }
             int index = scn.nextInt();
-
+            condition = openConditions.get(index - 1);
         }
-
+        //TODO what to do with the condition???
 
     }
 

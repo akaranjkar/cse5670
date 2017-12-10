@@ -1,6 +1,5 @@
 package edu.fit.cse5670;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -11,7 +10,7 @@ public class Nurse extends Employee {
         int option = scn.nextInt();
         switch (option){
             case 1:
-                startSesion(scn);
+                startSession(scn);
                 break;
             case 2:
                 printRecord(scn);
@@ -21,13 +20,14 @@ public class Nurse extends Employee {
     private void printRecord(Scanner scn) {
         System.out.println("Enter patient ID: ");
         int patientID = scn.nextInt();
-        //TODO get patient data from db
+        Patient patient = QueryBuilder.getPatient(patientID);
         //TODO print data
     }
 
-    private void startSesion(Scanner scn) {
-        System.out.println("Enter Condition ID");
-        //TODO retreive condition from DB
+    private void startSession(Scanner scn) {
+        System.out.println("Enter Condition ID: ");
+        int conditionID = scn.nextInt();
+        Condition condition = QueryBuilder.getCondition(conditionID);
         Session session = new Session(new Date(), getEmployeeID());
         System.out.println("Enter height");
         Double height = scn.nextDouble();
