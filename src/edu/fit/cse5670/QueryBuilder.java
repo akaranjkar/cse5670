@@ -113,6 +113,32 @@ public class QueryBuilder {
         return condition;
     }
 
+    public static int updateCondition(Condition condition,int conditionID) {
+        StringBuilder query;
+        if(conditionID ==0) {
+            query = new StringBuilder("insert into condition_ (patientID,maindiagnosis,closed) values(?,?,?)");
+        }else{
+            query = new StringBuilder("update condition_ set patientID=?,maindiagnosis=?,closed=?) where conditionID="+conditionID);
+        }
+        int success= DBManager.updateCondition(query, condition,11);
+
+        return success;
+    }
+
+    public static int updateSession(Session session,int sessionID, int conditionID) {
+        StringBuilder query;
+        if(sessionID ==0) {
+            query = new StringBuilder("insert into sessions(conditionID,visitdate,assessment,doctorID,nurseID,symptoms,diagnosis,recommendation,height,weight,bodytemp,bphigh,bplow,pulse)\n" +
+                    "   values(?, ?,?, ?,?,?,?, ?,?,?,?,?,?,?)");
+        }else{
+            query = new StringBuilder("update sessions set conditionID=?,visitdate=?,assessment=?,doctorID=?,nurseID=?,symptoms=?,diagnosis =?,recommendation=?,height=?,weight=?,bodytemp=?,bphigh=?,bplow=?,pulse=?) where sessionID="+sessionID);
+        }
+
+        int success= DBManager.updateSession(query, session,conditionID);
+
+        return success;
+    }
+
     public static List<Session> getSessions(int conditionID) {
         List<Session> sessions = new ArrayList<Session>();
         try {
