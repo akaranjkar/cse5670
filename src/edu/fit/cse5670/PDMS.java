@@ -20,7 +20,7 @@ public class PDMS {
         System.out.println("Password: ");
         String password = scn.nextLine();
 
-        Employee employee = EmployeeFactory.getInstance().getEmployee(username, password);
+        Employee employee = EmployeeFactory.getInstance().authenticateEmployee(username, password);
         employee.startEmployeeSession(scn);
     }
 }
