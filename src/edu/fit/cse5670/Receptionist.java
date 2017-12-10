@@ -1,5 +1,7 @@
 package edu.fit.cse5670;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,6 +28,16 @@ public class Receptionist extends Employee {
     private void printRecord(Scanner scn) {
         System.out.println("Enter patient ID: ");
         int patientID = scn.nextInt();
+        StringBuilder sb = new StringBuilder("select * from condition_ where patientID = '").append(patientID).append("';");
+        ResultSet rs = DBManager.getQuery(sb);
+        try {
+            while (rs.next()) {
+                int id = rs.getInt("patientID");
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         //TODO get patient data from db
         //TODO print data
     }
