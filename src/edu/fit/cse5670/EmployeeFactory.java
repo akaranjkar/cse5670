@@ -27,13 +27,22 @@ public class EmployeeFactory {
             tempType = rs.getInt("role");
             switch(tempType){
                 case DOCTOR:
-                    return new Doctor();
+                    Doctor doctor = new Doctor();
+                    setEmployeeAttr(doctor,rs);
+                    doctor.setSpecialization(rs.getString("specialization"));
+                    return doctor;
                 case NURSE:
-                    return new Nurse();
+                    Nurse nurse = new Nurse();
+                    setEmployeeAttr(nurse,rs);
+                    return nurse;
                 case RECEPTIONIST:
-                    return new Receptionist();
+                    Receptionist receptionist = new Receptionist();
+                    setEmployeeAttr(receptionist,rs);
+                    return receptionist;
                 case ADMINISTRATOR:
-                    return new Administrator();
+                    Administrator admin= new Administrator();
+                    setEmployeeAttr(admin,rs);
+                    return admin;
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -42,11 +51,19 @@ public class EmployeeFactory {
         return null;
     }
 
-
-    public Employee getEmployee(int empID){
-        return new Doctor();
-
+    private void setEmployeeAttr(Employee employee, ResultSet rs) throws SQLException {
+        employee.setEmployeeID(rs.getInt("employeeID"));
+        employee.setDob(rs.getTimestamp("dob"));
+        employee.setAge(rs.getInt("age"));
+        employee.setLastName(rs.getString("lastName"));
+        employee.setFirstName(rs.getString("firstName"));
+        employee.setAddress(rs.getString("address"));
+        employee.setPhone(rs.getString("phone"));
+        employee.setSalary(rs.getInt("salary"));
     }
+
+
+
     private ResultSet authenticate(String username, String password) throws SQLException {
         int empID=0;
         StringBuilder query = new StringBuilder("select * from login where username=\'"+username+"\'");
