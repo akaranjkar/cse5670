@@ -39,10 +39,12 @@ public class Doctor extends Employee{
     private void updateDiagnosis(Scanner scn) {
         System.out.println("Enter session ID:");
         int sessionID = scn.nextInt();
-        //TODO fetch session from DB
         //TODO fetch condition based in conditionID and update main diagnosis of condition
+        Condition condition = QueryBuilder.getCondition(QueryBuilder.getConditionIDFromSessionID(sessionID));
+
         System.out.println("Enter main diagnosis");
         String mainDiagnosis = scn.nextLine();
+        condition.setMainDiagnosis(mainDiagnosis);
         //condition.setMainDiagnosis(mainDiagnosis);
         //TODO write condition back to DB
     }
