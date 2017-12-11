@@ -56,7 +56,7 @@ public class DBManager {
         PreparedStatement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
-            stmt = conn.prepareStatement(sql.toString());
+            stmt = conn.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, patientID);
             stmt.setString(2, condition.getMainDiagnosis());
             stmt.setBoolean(3, condition.isClosed());
@@ -80,7 +80,7 @@ public class DBManager {
         PreparedStatement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
-            stmt = conn.prepareStatement(sql.toString());
+            stmt = conn.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, conditionID);
             stmt.setDate(2, new java.sql.Date(session.getDate().getTime()));
             stmt.setString(3, session.getAssessment().getDiagnosis());
@@ -117,7 +117,7 @@ public class DBManager {
         PreparedStatement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
-            stmt = conn.prepareStatement(query.toString());
+            stmt = conn.prepareStatement(query.toString(), Statement.RETURN_GENERATED_KEYS);
             stmt.setDate(1, new java.sql.Date(patient.getDob().getTime()));
             stmt.setInt(2, patient.getAge());
             stmt.setString(3, patient.getLastName());
@@ -146,7 +146,7 @@ public class DBManager {
         PreparedStatement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
-            stmt = conn.prepareStatement(query.toString());
+            stmt = conn.prepareStatement(query.toString(), Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, role);
             stmt.setDate(2, new java.sql.Date(employee.getDob().getTime()));
             stmt.setInt(3, employee.getAge());
