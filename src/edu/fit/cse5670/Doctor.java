@@ -44,8 +44,7 @@ public class Doctor extends Employee{
         System.out.println("Enter main diagnosis");
         String mainDiagnosis = scn.nextLine();
         condition.setMainDiagnosis(mainDiagnosis);
-        //condition.setMainDiagnosis(mainDiagnosis);
-        //TODO write condition back to DB
+        QueryBuilder.updateCondition(condition);
     }
 
     private void editSession(Scanner scn) {
@@ -61,7 +60,7 @@ public class Doctor extends Employee{
         Assessment assessment = new Assessment(symptoms,diagnosis,recommendations);
         session.setAssessment(assessment);
         session.setDoctorID(getEmployeeID());
-        //TODO update session in DB
+        QueryBuilder.updateSession(session);
     }
 }
 

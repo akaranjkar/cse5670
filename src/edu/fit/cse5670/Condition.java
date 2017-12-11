@@ -16,6 +16,9 @@ public class Condition {
         this.closed = false;
     }
 
+    public void addSession(Session session){
+        sessions.add(session);
+    }
     public Integer getConditionID() {
         return conditionID;
     }

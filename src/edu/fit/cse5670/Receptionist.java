@@ -43,8 +43,11 @@ public class Receptionist extends Employee {
         Condition condition;
         if(choice.equals("Y")){
             condition = new Condition();
-            //TODO add condition to DB and update condition ID
-            //TODO add condition to patient
+            //add condition to DB and update condition ID
+            int conditionID = QueryBuilder.insertCondition(condition, patientID);
+            condition.setConditionID(conditionID);
+            //add condition to patient
+            patient.addContion(condition);
         }else{
             List<Condition> openConditions = QueryBuilder.getConditions(patientID, false);
             Iterator<Condition> iterator = openConditions.iterator();
@@ -53,6 +56,7 @@ public class Receptionist extends Employee {
                 Condition cond = iterator.next();
                 StringBuilder sb = new StringBuilder(i).append(") ID: ").append(cond.getConditionID()).append(" ").append(cond.getMainDiagnosis());
                 System.out.println(sb.toString());
+                i++;
             }
             int index = scn.nextInt();
             condition = openConditions.get(index - 1);
@@ -82,7 +86,9 @@ public class Receptionist extends Employee {
 
         HCPolicy policy = new HCPolicy(policyID, policyProvider, policyExpirationDate);
         Patient patient = new Patient(firstName, lastName, address, date, phoneNumber, policy);
-    //TODO save patient in database
+        //save patient in database
+        int patientID = QueryBuilder.insertPatient(patient);
+        patient.setPatientID(patientID);
     }
 
 }

@@ -43,9 +43,9 @@ public class Nurse extends Employee {
         int pulseRate = scn.nextInt();
         Vitals vitals = new Vitals(height,weight,temperature,bpHigh,bpLow,pulseRate);
         session.setVitals(vitals);
-        //TODO Write session to DB and get sessionID
-        //TODO Update session ID
-        //TODO add session to condition's session list
+        int sessionID = QueryBuilder.insertSession(session, conditionID);
+        session.setSessionID(sessionID);
+        condition.addSession(session);
 
     }
 }

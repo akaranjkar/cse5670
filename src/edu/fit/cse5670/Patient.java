@@ -18,6 +18,10 @@ public class Patient extends Person {
         conditions = new ArrayList<Condition>();
     }
 
+    public void addContion(Condition condition){
+        conditions.add(condition);
+    }
+
     public HCPolicy getPolicy() {
         return policy;
     }
