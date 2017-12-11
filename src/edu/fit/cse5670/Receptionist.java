@@ -71,7 +71,7 @@ public class Receptionist extends Employee {
         int policyID = scn.nextInt();
         scn.nextLine();
 
-        HCPolicy policy = null;
+        HCPolicy policy = QueryBuilder.getPolicy(policyID);
         Patient patient = new Patient(firstName, lastName, address, date, phoneNumber, policy);
         //save patient in database
         int patientID = QueryBuilder.insertPatient(patient);

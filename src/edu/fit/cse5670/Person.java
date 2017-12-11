@@ -31,6 +31,9 @@ public abstract class Person {
 
     public void setDob(Date dob) {
         this.dob = dob;
+        long time = new Date().getTime() - dob.getTime();
+        double ybtwn = time/ 3.156e+10;
+        this.setAge((int) Math.floor(ybtwn));
     }
 
     public String getAddress() {
@@ -56,4 +59,5 @@ public abstract class Person {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
 }

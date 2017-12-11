@@ -16,6 +16,7 @@ public class Patient extends Person {
         this.setPhone(phone);
         this.setPolicy(policy);
         conditions = new ArrayList<Condition>();
+
     }
 
     public void addContion(Condition condition){
