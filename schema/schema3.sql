@@ -41,19 +41,19 @@ insert into condition_ (patientID,maindiagnosis,closed) values(1000002,'Fracture
 
 
 insert into sessions(conditionID,visitdate,assessment,doctorID,nurseID,symptoms,diagnosis,recommendation,height,weight,bodytemp,bphigh,bplow,pulse)
-   values(10000, '2017-06-17','Patient has flu', 100000,100003,'inflammation','flu', 'tablets',123,120,102,120,70,76);
+   values(10000, '2017-06-17','Patient has flu', 100000,100002,'inflammation','flu', 'tablets',123,120,102,120,70,76);
 
 insert into sessions(conditionID,visitdate,assessment,doctorID,nurseID,symptoms,diagnosis,recommendation,height,weight,bodytemp,bphigh,bplow,pulse)
-   values(10001, '2017-08-21','Patient has flu', 100001,100003,'inflammation','flu', 'tablets',101,90,104,124,87,83);
+   values(10001, '2017-08-21','Patient has flu', 100001,100002,'inflammation','flu', 'tablets',101,90,104,124,87,83);
 
 insert into sessions(conditionID,visitdate,assessment,doctorID,nurseID,symptoms,diagnosis,recommendation,height,weight,bodytemp,bphigh,bplow,pulse)
-   values(10000, '2017-07-02','Patient has flu', 100000,100003,'inflammation','flu', 'injection',123,111,101,110,90,82);
+   values(10000, '2017-07-02','Patient has flu', 100000,100002,'inflammation','flu', 'injection',123,111,101,110,90,82);
 
 insert into sessions(conditionID,visitdate,assessment,doctorID,nurseID,symptoms,diagnosis,recommendation,height,weight,bodytemp,bphigh,bplow,pulse)
-   values(10002, '2017-11-11','Twisted ankle', 100002,100003,'Swelling','swelling', 'tablets',101,90,104,121,83,83);
+   values(10002, '2017-11-11','Twisted ankle', 100002,100002,'Swelling','swelling', 'tablets',101,90,104,121,83,83);
 
 insert into sessions(conditionID,visitdate,assessment,doctorID,nurseID,symptoms,diagnosis,recommendation,height,weight,bodytemp,bphigh,bplow,pulse)
-   values(10002, '2017-11-22','Twisted ankle', 100002,100003,'Swelling reduced','swelling', 'tablets',123,111,101,117,82,82);
+   values(10002, '2017-11-22','Twisted ankle', 100002,100002,'Swelling reduced','swelling', 'tablets',123,111,101,117,82,82);
 
 
 
