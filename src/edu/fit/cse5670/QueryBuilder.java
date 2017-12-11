@@ -1,7 +1,6 @@
 package edu.fit.cse5670;
 
 
-import javax.print.Doc;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,8 +57,8 @@ public class QueryBuilder {
         return employeeID;
     }
 
-    public static Doctor getDoctor(int empID) {
-        Doctor employee = null;
+    public static Employee getEmployee(int empID) {
+        Employee employee = null;
 
         try {
             StringBuilder query = new StringBuilder("select * from employee where employeeID=" + empID);
@@ -70,8 +69,9 @@ public class QueryBuilder {
             String address = rs.getString("address");
             String phone = rs.getString("phone");
             Date date = rs.getTimestamp("dob");
+            int role = rs.getInt("role");
             String specialization = rs.getString("specialization");
-            employee = new Doctor();//firstName,lastName,address,date,phone
+            employee = EmployeeFactory.getInstance().createEmployee(firstName,lastName,address,date,phone, 0, true, specialization, role);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -112,7 +112,7 @@ public class QueryBuilder {
                 condition = new Condition();
                 condition.setConditionID(conditionID);
                 condition.setMainDiagnosis(maindiagnosis);
-                condition.setSession(sessions);
+                condition.setSessions(sessions);
                 condition.setClosed(rs.getBoolean("closed"));
                 conditions.add(condition);
             }
@@ -134,7 +134,7 @@ public class QueryBuilder {
             condition = new Condition();
             condition.setConditionID(conditionID);
             condition.setMainDiagnosis(maindiagnosis);
-            condition.setSession(sessions);
+            condition.setSessions(sessions);
             condition.setClosed(rs.getBoolean("closed"));
 
         } catch (SQLException e) {

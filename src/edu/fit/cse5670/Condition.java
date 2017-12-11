@@ -35,11 +35,11 @@ public class Condition {
         this.mainDiagnosis = mainDiagnosis;
     }
 
-    public List<Session> getSession() {
+    public List<Session> getSessions() {
         return sessions;
     }
 
-    public void setSession(List<Session> session) {
+    public void setSessions(List<Session> session) {
         this.sessions = session;
     }
 

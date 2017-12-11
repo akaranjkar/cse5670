@@ -1,10 +1,5 @@
 package edu.fit.cse5670;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -41,7 +36,18 @@ public class Receptionist extends Employee {
         while(conditionIterator.hasNext()){
             Condition condition = conditionIterator.next();
             sb.append("  Condition ID: ").append(condition.getConditionID()).append("\n");
-            sb.append("  Diagnosis: ").append(condition.getMainDiagnosis()).append("\n");
+            sb.append("  Main diagnosis: ").append(condition.getMainDiagnosis()).append("\n\n");
+            sb.append("  Sessions:\n");
+            Iterator<Session> sessionIterator = condition.getSessions().iterator();
+            while(sessionIterator.hasNext()){
+                Session session = sessionIterator.next();
+                sb.append("    Session ID: ").append(session.getSessionID()).append("\n");
+                Doctor doctor = (Doctor) QueryBuilder.getEmployee(session.getDoctorID());
+                sb.append("    Doctor in charge: ").append(doctor.getFirstName()).append(" ").append(doctor.getLastName()).append("\n");
+                Nurse nurse = (Nurse) QueryBuilder.getEmployee(session.getNurseID());
+                sb.append("    Nurse in charge: ").append(nurse.getFirstName()).append(" ").append(nurse.getLastName()).append("\n");
+
+            }
         }
         System.out.println(sb.toString());
     }
