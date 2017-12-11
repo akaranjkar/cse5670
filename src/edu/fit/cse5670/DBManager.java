@@ -6,13 +6,23 @@ import java.sql.*;
 public class DBManager {
 
     public static void main(String[] args) {
-        StringBuilder query = new StringBuilder("SELECT * FROM patient ");
-        ResultSet rs = getQuery(query);
+        Connection conn = null;
+        StringBuilder query = new StringBuilder("select * from login where username=\'moses\'");
+        try {
+        ResultSet rs = getQuery(conn, query);
+            while (rs.next()){
+                System.out.println("Emp ID = "+rs.getString("employeeID"));
+            }
+        } catch (SQLException se) {
+            //Handle errors for JDBC
+            se.printStackTrace();
+        }
     }
 
-    public static ResultSet getQuery(StringBuilder sql) {
+
+    public static ResultSet getQuery(Connection conn,StringBuilder sql) {
         ResultSet rs = null;
-        Connection conn = null;
+//        Connection conn = null;
         Statement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
@@ -24,16 +34,13 @@ public class DBManager {
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
-        } finally {
-            //finally block used to close resources
-            closeConnection(conn, stmt);
-        }//end try
+        }
         return rs;
     }
 
 
-    public static void updateQuery(StringBuilder sql) {
-        Connection conn = null;
+    public static void updateQuery(Connection conn, StringBuilder sql) {
+//        Connection conn = null;
         PreparedStatement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
@@ -43,10 +50,7 @@ public class DBManager {
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
-        } finally {
-            //finally block used to close resources
-            closeConnection(conn, stmt);
-        }//end try
+        }
     }
 
     public static int updateCondition(StringBuilder sql, Condition condition, int patientID) {
@@ -69,15 +73,12 @@ public class DBManager {
             //Handle errors for JDBC
             System.out.println("Error adding condition: " + se.getErrorCode());
             return -1;
-        } finally {
-            //finally block used to close resources
-            closeConnection(conn, stmt);
-        }//end try
+        }
         return condition.getConditionID();
     }
 
-    public static int updateSession(StringBuilder sql, Session session, int conditionID) {
-        Connection conn = null;
+    public static int updateSession(Connection conn, StringBuilder sql, Session session, int conditionID) {
+//        Connection conn = null;
         PreparedStatement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
@@ -107,31 +108,14 @@ public class DBManager {
             //Handle errors for JDBC
             System.out.println("Error adding condition: " + se.getErrorCode());
             return -1;
-        } finally {
-            //finally block used to close resources
-            closeConnection(conn, stmt);
-        }//end try
+        }
         return session.getSessionID();
     }
 
-    private static void closeConnection(Connection conn, Statement stmt) {
-        try {
-            if (stmt != null)
-                stmt.close();
-        } catch (SQLException se2) {
-        }// nothing we can do
-        try {
-            if (conn != null) {
-                conn.close();
-                System.out.println("Closing connection");
-            }
-        } catch (SQLException se) {
-            se.printStackTrace();
-        }//end finally try
-    }
 
-    public static int insertPatient(StringBuilder query, Patient patient) {
-        Connection conn = null;
+
+    public static int insertPatient(Connection conn, StringBuilder query, Patient patient) {
+//        Connection conn = null;
         PreparedStatement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
@@ -154,16 +138,13 @@ public class DBManager {
             //Handle errors for JDBC
             System.out.println("Error adding condition: " + se.getErrorCode());
             return -1;
-        } finally {
-            //finally block used to close resources
-            closeConnection(conn, stmt);
-        }//end try
+        }
         return patient.getPatientID();
 
     }
 
-    public static int insertEmployee(StringBuilder query, Employee employee, int role, String specialization) {
-        Connection conn = null;
+    public static int insertEmployee(Connection conn, StringBuilder query, Employee employee, int role, String specialization) {
+//        Connection conn = null;
         PreparedStatement stmt = null;
         try {
 //            insert into employee(role,dob,age,lastname,firstname,address,city,phone,salary,specialization)
@@ -192,10 +173,7 @@ public class DBManager {
             //Handle errors for JDBC
             System.out.println("Error adding condition: " + se.getErrorCode());
             return -1;
-        } finally {
-            //finally block used to close resources
-            closeConnection(conn, stmt);
-        }//end try
+        }
         return employee.getEmployeeID();
     }
 }

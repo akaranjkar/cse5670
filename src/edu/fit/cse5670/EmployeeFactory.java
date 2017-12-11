@@ -1,6 +1,7 @@
 package edu.fit.cse5670;
 
 import javax.print.Doc;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -44,9 +45,10 @@ public class EmployeeFactory {
 
     public Employee authenticateEmployee(String username, String password) {
         //TODO get employee info from DB
+        Connection conn =null;
         int tempType = 0;
         try {
-            ResultSet rs = authenticate(username, password);
+            ResultSet rs = authenticate(conn,username, password);
             rs.last();
             tempType = rs.getInt("role");
             switch (tempType) {
@@ -70,7 +72,10 @@ public class EmployeeFactory {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }finally {
+            //finally block used to close resources
+            closeConnection(conn);
+        }//end try
 
         return null;
     }
@@ -99,17 +104,29 @@ public class EmployeeFactory {
         }
     }
 
-    private ResultSet authenticate(String username, String password) throws SQLException {
+    private ResultSet authenticate(Connection conn, String username, String password) throws SQLException {
         int empID = 0;
+//        Connection conn = null;
         StringBuilder query = new StringBuilder("select * from login where username=\'" + username + "\'");
-        ResultSet rs = DBManager.getQuery(query);
+        ResultSet rs = DBManager.getQuery(conn,query);
         rs.last();
-        if (rs.getString("username") == username && rs.getString("password") == password) {
+        if (username.equals(rs.getString("username"))  && password.equals(rs.getString("passwd"))) {
             empID = rs.getInt("employeeID");
             query = new StringBuilder("select * from employee where employeeid=\'" + empID + "\'");
-            rs = DBManager.getQuery(query);
+            rs = DBManager.getQuery(conn,query);
         }
         return rs;
 
     }
+    private static void closeConnection(Connection conn) {
+        try {
+            if (conn != null) {
+                conn.close();
+                System.out.println("Closing connection");
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+        }//end finally try
+    }
+
 }
