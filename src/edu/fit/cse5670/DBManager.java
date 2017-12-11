@@ -26,7 +26,6 @@ public class DBManager {
         Statement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
-            System.out.println("Creating statement...");
             stmt = conn.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
@@ -44,7 +43,6 @@ public class DBManager {
         PreparedStatement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
-            System.out.println("Creating statement...");
             stmt = conn.prepareStatement(sql.toString());
             stmt.executeUpdate();
         } catch (SQLException se) {
@@ -106,7 +104,7 @@ public class DBManager {
             }
         } catch (SQLException se) {
             //Handle errors for JDBC
-            System.out.println("Error adding condition: " + se.getErrorCode());
+            System.out.println("Error adding session: " + se.getErrorCode());
             return -1;
         }
         return session.getSessionID();
@@ -136,7 +134,7 @@ public class DBManager {
             }
         } catch (SQLException se) {
             //Handle errors for JDBC
-            System.out.println("Error adding condition: " + se.getErrorCode());
+            System.out.println("Error adding patient: " + se.getErrorCode());
             return -1;
         }
         return patient.getPatientID();
@@ -171,7 +169,7 @@ public class DBManager {
             }
         } catch (SQLException se) {
             //Handle errors for JDBC
-            System.out.println("Error adding condition: " + se.getErrorCode());
+            System.out.println("Error adding employee: " + se.getErrorCode());
             return -1;
         }
         return employee.getEmployeeID();

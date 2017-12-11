@@ -23,7 +23,7 @@ public class QueryBuilder {
             String address = rs.getString("address");
             String phone = rs.getString("phone");
             Date date = rs.getTimestamp("dob");
-            HCPolicy hcPolicy = getPolicy(conn,rs.getInt("policyID"));
+            HCPolicy hcPolicy = getPolicy(rs.getInt("policyID"));
             patient = new Patient(firstName, lastName, address, date, phone, hcPolicy);
             patient.setPatientID(patientID);
             patient.setConditions(getConditions(patientID,true));
@@ -97,7 +97,8 @@ try {
         return employee;
     }
 
-    private static HCPolicy getPolicy(Connection conn, int policyID) {
+    public static HCPolicy getPolicy(int policyID) {
+        Connection conn = null;
         HCPolicy policy = null;
         try {
             StringBuilder query = new StringBuilder("select * from policy where policyID=" + policyID);
