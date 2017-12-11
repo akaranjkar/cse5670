@@ -1,7 +1,9 @@
 package edu.fit.cse5670;
 
+import javax.print.Doc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class EmployeeFactory {
     private static EmployeeFactory ourInstance = new EmployeeFactory();
@@ -18,33 +20,55 @@ public class EmployeeFactory {
     private EmployeeFactory() {
     }
 
-    public Employee authenticateEmployee(String username, String password){
+    public Employee createEmployee(String firstName, String lastName, String address, Date dob, String phone, int salary, boolean fullTime, String specialization, int role) {
+        switch (role) {
+            case DOCTOR:
+                Doctor doctor = new Doctor();
+                setEmployeeAttr(doctor, firstName, lastName, address, dob, phone, salary, fullTime, specialization);
+                return doctor;
+            case NURSE:
+                Nurse nurse = new Nurse();
+                setEmployeeAttr(nurse, firstName, lastName, address, dob, phone, salary, fullTime, specialization);
+                return nurse;
+            case RECEPTIONIST:
+                Receptionist receptionist = new Receptionist();
+                setEmployeeAttr(receptionist, firstName, lastName, address, dob, phone, salary, fullTime, specialization);
+                return receptionist;
+            case ADMINISTRATOR:
+                Administrator admin = new Administrator();
+                setEmployeeAttr(admin, firstName, lastName, address, dob, phone, salary, fullTime, specialization);
+                return admin;
+        }
+        return null;
+    }
+
+    public Employee authenticateEmployee(String username, String password) {
         //TODO get employee info from DB
         int tempType = 0;
         try {
-            ResultSet rs = authenticate(username,password);
+            ResultSet rs = authenticate(username, password);
             rs.last();
             tempType = rs.getInt("role");
-            switch(tempType){
+            switch (tempType) {
                 case DOCTOR:
                     Doctor doctor = new Doctor();
-                    setEmployeeAttr(doctor,rs);
+                    setEmployeeAttr(doctor, rs);
                     doctor.setSpecialization(rs.getString("specialization"));
                     return doctor;
                 case NURSE:
                     Nurse nurse = new Nurse();
-                    setEmployeeAttr(nurse,rs);
+                    setEmployeeAttr(nurse, rs);
                     return nurse;
                 case RECEPTIONIST:
                     Receptionist receptionist = new Receptionist();
-                    setEmployeeAttr(receptionist,rs);
+                    setEmployeeAttr(receptionist, rs);
                     return receptionist;
                 case ADMINISTRATOR:
-                    Administrator admin= new Administrator();
-                    setEmployeeAttr(admin,rs);
+                    Administrator admin = new Administrator();
+                    setEmployeeAttr(admin, rs);
                     return admin;
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -62,17 +86,28 @@ public class EmployeeFactory {
         employee.setSalary(rs.getInt("salary"));
     }
 
-
+    private void setEmployeeAttr(Employee employee, String firstName, String lastName, String address, Date dob, String phone, int salary, boolean fullTime, String specialization) {
+        employee.setFirstName(firstName);
+        employee.setLastName(lastName);
+        employee.setAddress(address);
+        employee.setDob(dob);
+        employee.setPhone(phone);
+        employee.setSalary(salary);
+        employee.setFullTime(fullTime);
+        if (employee instanceof Doctor) {
+            ((Doctor) employee).setSpecialization(specialization);
+        }
+    }
 
     private ResultSet authenticate(String username, String password) throws SQLException {
-        int empID=0;
-        StringBuilder query = new StringBuilder("select * from login where username=\'"+username+"\'");
-        ResultSet rs= DBManager.getQuery(query);
+        int empID = 0;
+        StringBuilder query = new StringBuilder("select * from login where username=\'" + username + "\'");
+        ResultSet rs = DBManager.getQuery(query);
         rs.last();
-        if( rs.getString("username") ==username && rs.getString("password")==password){
+        if (rs.getString("username") == username && rs.getString("password") == password) {
             empID = rs.getInt("employeeID");
-            query = new StringBuilder("select * from employee where employeeid=\'"+empID+"\'");
-            rs= DBManager.getQuery(query);
+            query = new StringBuilder("select * from employee where employeeid=\'" + empID + "\'");
+            rs = DBManager.getQuery(query);
         }
         return rs;
 

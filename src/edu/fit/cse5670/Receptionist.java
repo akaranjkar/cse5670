@@ -31,7 +31,19 @@ public class Receptionist extends Employee {
         System.out.println("Enter patient ID: ");
         int patientID = scn.nextInt();
         Patient patient = QueryBuilder.getPatient(patientID);
-        //TODO print data
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("PatientName: ").append(patient.getFirstName()).append(" ").append(patient.getLastName()).append("\n");
+        sb.append("Patient ID: ").append(patient.patientID).append("\n");
+        sb.append("Patient address").append(patient.getAddress()).append("\n\n");
+        sb.append("Conditions:\n");
+        Iterator<Condition> conditionIterator = patient.getConditions().iterator();
+        while(conditionIterator.hasNext()){
+            Condition condition = conditionIterator.next();
+            sb.append("  Condition ID: ").append(condition.getConditionID()).append("\n");
+            sb.append("  Diagnosis: ").append(condition.getMainDiagnosis()).append("\n");
+        }
+        System.out.println(sb.toString());
     }
 
     private void RetrievePatientData(Scanner scn) {
