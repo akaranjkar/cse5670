@@ -8,8 +8,9 @@ import java.util.Scanner;
 public class Receptionist extends Employee {
     @Override
     public void startEmployeeSession(Scanner scn) {
-        System.out.println("1) Add new Patient\n2) Retrieve Patient Data\n3) Print Patient Record\n");
+        System.out.print("1) Add new Patient\n2) Retrieve Patient Data\n3) Print Patient Record\n\nEnter choice: ");
         int option = scn.nextInt();
+        scn.nextLine();
         switch (option){
             case 1:
                 addNewPatient(scn);
@@ -55,25 +56,22 @@ public class Receptionist extends Employee {
     }
 
     private void addNewPatient(Scanner scn){
-        System.out.println("Name: ");
+        System.out.print("First Name: ");
         String firstName = scn.nextLine();
-        System.out.println("Last Name: ");
+        System.out.print("Last Name: ");
         String lastName = scn.nextLine();
-        System.out.println("Address: ");
+        System.out.print("Address: ");
         String address = scn.nextLine();
-        System.out.println("Date of Birth: ");
+        System.out.print("Date of Birth: ");
         Date date = parseDate(scn.nextLine());
-        System.out.println("Phone Number: ");
+        System.out.print("Phone Number: ");
         String phoneNumber = scn.nextLine();
         System.out.println("Policy Information");
-        System.out.println("PolicyID: ");
+        System.out.print("PolicyID: ");
         int policyID = scn.nextInt();
-        System.out.println("Policy Provider: ");
-        String policyProvider = scn.nextLine();
-        System.out.println("Expiration Date: ");
-        Date policyExpirationDate = parseDate(scn.nextLine());
+        scn.nextLine();
 
-        HCPolicy policy = new HCPolicy(policyID, policyProvider, policyExpirationDate);
+        HCPolicy policy = QueryBuilder.get
         Patient patient = new Patient(firstName, lastName, address, date, phoneNumber, policy);
         //save patient in database
         int patientID = QueryBuilder.insertPatient(patient);

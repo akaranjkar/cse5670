@@ -25,6 +25,8 @@ public class QueryBuilder {
             Date date = rs.getTimestamp("dob");
             HCPolicy hcPolicy = getPolicy(conn,rs.getInt("policyID"));
             patient = new Patient(firstName, lastName, address, date, phone, hcPolicy);
+            patient.setPatientID(patientID);
+            patient.setConditions(getConditions(patientID,true));
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
@@ -274,6 +276,7 @@ try {
         int bloodPressureHigh = rs.getInt("bphigh");
         int bloodPressureLow = rs.getInt("bplow");
         int pulseRate = rs.getInt("pulse");
+        int sessionID = rs.getInt("sessionID");
         Vitals vitals = new Vitals(height, weight, temperature, bloodPressureHigh, bloodPressureLow, pulseRate);
         session.setVitals(vitals);
         session.setDoctorID(rs.getInt("doctorID"));
@@ -282,6 +285,7 @@ try {
         String recommendations = rs.getString("recommendation");
         Assessment assessment = new Assessment(symptoms, diagnosis, recommendations);
         session.setAssessment(assessment);
+        session.setSessionID(sessionID);
         return session;
     }
 

@@ -18,6 +18,7 @@ public class Doctor extends Employee{
     public void startEmployeeSession(Scanner scn) {
         System.out.println("1) Add assessment to session\n2) Update main diagnosis\n3) Print Patient Record\n");
         int option = scn.nextInt();
+        scn.nextLine();
         switch (option){
             case 1:
                 editSession(scn);
@@ -33,6 +34,7 @@ public class Doctor extends Employee{
     private void updateDiagnosis(Scanner scn) {
         System.out.println("Enter session ID:");
         int sessionID = scn.nextInt();
+        scn.nextLine();
         Condition condition = QueryBuilder.getCondition(QueryBuilder.getConditionIDFromSessionID(sessionID));
 
         System.out.println("Enter main diagnosis");
@@ -44,6 +46,7 @@ public class Doctor extends Employee{
     private void editSession(Scanner scn) {
         System.out.println("Enter session ID:");
         int sessionID = scn.nextInt();
+        scn.nextLine();
         Session session = QueryBuilder.getSession(sessionID);
         System.out.println("Enter symptoms:");
         String symptoms = scn.nextLine();

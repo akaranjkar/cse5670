@@ -64,23 +64,23 @@ public abstract class Employee extends Person {
             Condition condition = conditionIterator.next();
             sb.append("  Condition ID: ").append(condition.getConditionID()).append("\n");
             sb.append("  Main diagnosis: ").append(condition.getMainDiagnosis()).append("\n\n");
-            sb.append("  Sessions:\n");
+            sb.append("  Sessions:");
             Iterator<Session> sessionIterator = condition.getSessions().iterator();
             while(sessionIterator.hasNext()){
                 Session session = sessionIterator.next();
-                sb.append("    Session ID: ").append(session.getSessionID()).append("\n");
+                sb.append("\n    Session ID: ").append(session.getSessionID()).append("\n");
                 Doctor doctor = (Doctor) QueryBuilder.getEmployee(session.getDoctorID());
                 sb.append("    Doctor in charge: ").append(doctor.getFirstName()).append(" ").append(doctor.getLastName()).append("\n");
                 Nurse nurse = (Nurse) QueryBuilder.getEmployee(session.getNurseID());
                 sb.append("    Nurse in charge: ").append(nurse.getFirstName()).append(" ").append(nurse.getLastName()).append("\n");
                 Vitals vitals = session.getVitals();
-                sb.append("    Vitals:\nTemperature: ").append(vitals.getTemperature()).append("\n");
+                sb.append("    Vitals:\n    Temperature: ").append(vitals.getTemperature()).append("\n");
                 sb.append("    Weight: ").append(vitals.getWeight()).append("\n");
                 sb.append("    Height: ").append(vitals.getHeight()).append("\n");
                 sb.append("    Blood pressure: ").append(vitals.getBloodPressureHigh()).append("/").append(vitals.getBloodPressureLow()).append("\n");
                 sb.append("    Pulse: ").append(vitals.getPulseRate()).append("\n");
                 Assessment assessment = session.getAssessment();
-                sb.append("    Assessment:\nSymptoms: ").append(assessment.getSymptoms()).append("\n");
+                sb.append("    Assessment:\n    Symptoms: ").append(assessment.getSymptoms()).append("\n");
                 sb.append("    Diagnosis: ").append(assessment.getDiagnosis()).append("n");
                 sb.append("    Recommendation: ").append(assessment.getRecommendations()).append("\n");
             }

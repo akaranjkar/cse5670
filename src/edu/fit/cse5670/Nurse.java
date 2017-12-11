@@ -8,6 +8,7 @@ public class Nurse extends Employee {
     public void startEmployeeSession(Scanner scn) {
         System.out.println("1) Start new session\n2) Print Patient Record\n");
         int option = scn.nextInt();
+        scn.nextLine();
         switch (option){
             case 1:
                 startSession(scn);
@@ -40,6 +41,6 @@ public class Nurse extends Employee {
         int sessionID = QueryBuilder.insertSession(session, conditionID);
         session.setSessionID(sessionID);
         condition.addSession(session);
-
+        scn.nextLine();
     }
 }

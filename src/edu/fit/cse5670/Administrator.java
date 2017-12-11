@@ -8,6 +8,7 @@ public class Administrator extends Employee {
     public void startEmployeeSession(Scanner scn) {
         System.out.println("1) Add employee\n2) Remove employee\n");
         int option = scn.nextInt();
+        scn.nextLine();
         switch (option){
             case 1:
                 addEmployee(scn);
@@ -20,6 +21,7 @@ public class Administrator extends Employee {
     public void addEmployee(Scanner scn) {
         System.out.println("Select role:\n1) Doctor\n2) Nurse\n3) Receptionist\n4) Administrator");
         int role = scn.nextInt() % 4;
+        scn.nextLine();
         System.out.println("First Name: ");
         String firstName = scn.nextLine();
         System.out.println("Last Name: ");
@@ -34,6 +36,7 @@ public class Administrator extends Employee {
         int salary = scn.nextInt();
         System.out.println("Full time\n1)Yes\n2) No");
         boolean fullTime = scn.nextInt() == 1;
+        scn.nextLine();
         String specialization = "";
         if(role == EmployeeFactory.DOCTOR){
             System.out.println("Specialization: ");
