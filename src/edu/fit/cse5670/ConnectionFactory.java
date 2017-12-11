@@ -11,34 +11,38 @@ import java.util.Properties;
 public class ConnectionFactory {
     public static Connection connection = null;
 
-    // JDBC driver name and database URL
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/clinicsys";
-
-    // Database credentials
-    static final String USER = "root";
-    static final String PASS = "root";
-
-
-
-//    public ConnectionFactory() throws FileNotFoundException {
+//    // JDBC driver name and database URL
+//    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+//    static final String DB_URL = "jdbc:mysql://localhost/clinicsys";
 //
-//        Properties props = new Properties();
-//        FileInputStream in = new FileInputStream("PDMS");
-//        try {
-//            props.load(in);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println();
-//        // JDBC driver name and database URL
-//        final String JDBC_DRIVER = props.getProperty("drivername");
-//        final String DB_URL = props.getProperty("db_url");
-//
-//        // Database credentials
-//        final String USER = props.getProperty("user");
-//        final String PASS = props.getProperty("pass");
-//    }
+//    // Database credentials
+//    static final String USER = "root";
+//    static final String PASS = "group14";
+
+
+    static String JDBC_DRIVER , DB_URL , USER ,PASS;
+
+    static {
+
+        Properties props = new Properties();
+        FileInputStream in = null;
+        try {
+            in= new FileInputStream("resources\\PDMS.properties");
+            props.load(in);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println();
+        // JDBC driver name and database URL
+        JDBC_DRIVER = props.getProperty("drivername");
+        DB_URL = props.getProperty("db_url");
+
+        // Database credentials
+        USER = props.getProperty("user");
+        PASS = props.getProperty("pass");
+    }
 
 
 
