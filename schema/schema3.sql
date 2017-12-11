@@ -8,10 +8,10 @@ insert into employee(role,dob,age,lastname,firstname,address,phone,salary,specia
   values (1,'1975-03-29', 46,'Bourne','Jason','876 Proxy st','+1(987)616-9999','150000','physician');
 
 insert into employee(role,dob,age,lastname,firstname,address,phone,salary,specialization)
-  values (3,'1993-01-21',24,'Cyrus','Miley','112 Hack st','+1(535)000-9999','80000','physician');
+  values (3,'1993-01-21',24,'Cyrus','Miley','112 Hack st','+1(535)000-9999','80000','');
 
 insert into employee(role,dob,age,lastname,firstname,address,phone,salary,specialization)
-  values (2,'1990-02-05',18,'Clone','Clone','876 Mary st','+1(767)101-1234','50000','null');
+  values (2,'1990-02-05',18,'Clone','Clone','876 Mary st','+1(767)101-1234','50000','');
 
 insert into login values (100000, 'moses',123456);
 insert into login values (100001, 'james',123456);
