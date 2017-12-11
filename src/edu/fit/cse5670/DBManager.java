@@ -145,9 +145,6 @@ public class DBManager {
 //        Connection conn = null;
         PreparedStatement stmt = null;
         try {
-//            insert into employee(role,dob,age,lastname,firstname,address,city,phone,salary,specialization)
-//            values (1,'1980-07-21', 32,'Dsouza','Moses','298 Topi st', 'Miami','+1(321)616-2928','100000','anesthesiologist');
-
             conn = ConnectionFactory.getConnection();
             stmt = conn.prepareStatement(query.toString());
             stmt.setInt(1, role);
@@ -158,7 +155,7 @@ public class DBManager {
             stmt.setString(6, employee.getAddress());
             stmt.setString(7, employee.getPhone());
             stmt.setInt(8, employee.getSalary());
-            stmt.setString(8, specialization);
+            stmt.setString(9, specialization);
 
             stmt.executeUpdate();
 
