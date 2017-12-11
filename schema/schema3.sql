@@ -13,6 +13,9 @@ insert into employee(role,dob,age,lastname,firstname,address,phone,salary,specia
 insert into employee(role,dob,age,lastname,firstname,address,phone,salary,specialization)
   values (2,'1990-02-05',18,'Clone','Clone','876 Mary st','+1(767)101-1234','50000','');
 
+insert into employee(role,dob,age,lastname,firstname,address,phone,salary,specialization)
+  values (0,'1972-02-05',38,'Smith','Will','927 MIB st','+1(876)101-9876','90000','');
+  
 insert into login values (100000, 'moses',123456);
 insert into login values (100001, 'james',123456);
 insert into login values (100002, 'jason',123456);
