@@ -51,11 +51,8 @@ public class ConnectionFactory {
                 Class.forName(JDBC_DRIVER);
 
                 //Open a connection
-                System.out.println("Connecting to database...");
                 connection = DriverManager.getConnection(DB_URL, USER, PASS);
 
-            } else {
-                System.out.println("Connection already exists");
             }
 
         } catch (SQLException se) {
