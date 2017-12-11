@@ -6,15 +6,22 @@ import java.util.Scanner;
 public class Administrator extends Employee {
     @Override
     public void startEmployeeSession(Scanner scn) {
-        System.out.println("1) Add employee\n2) Remove employee\n");
-        int option = scn.nextInt();
-        scn.nextLine();
-        switch (option){
-            case 1:
-                addEmployee(scn);
-                break;
-            case 2:
-                removeEmployee(scn);
+        boolean choice = true;
+        while(choice) {
+            System.out.println("1) Add employee\n2) Remove employee\n3) Log out\n\nEnter choice: ");
+            int option = scn.nextInt();
+            scn.nextLine();
+            switch (option) {
+                case 1:
+                    addEmployee(scn);
+                    break;
+                case 2:
+                    removeEmployee(scn);
+                    break;
+                case 3:
+                    choice = false;
+                    break;
+            }
         }
     }
 

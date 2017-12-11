@@ -6,15 +6,22 @@ import java.util.Scanner;
 public class Nurse extends Employee {
     @Override
     public void startEmployeeSession(Scanner scn) {
-        System.out.println("1) Start new session\n2) Print Patient Record\n");
-        int option = scn.nextInt();
-        scn.nextLine();
-        switch (option){
-            case 1:
-                startSession(scn);
-                break;
-            case 2:
-                printRecord(scn);
+        boolean choice = true;
+        while(choice) {
+            System.out.println("1) Start new session\n2) Print Patient Record\n3) Log out\n\nEnter choice: ");
+            int option = scn.nextInt();
+            scn.nextLine();
+            switch (option) {
+                case 1:
+                    startSession(scn);
+                    break;
+                case 2:
+                    printRecord(scn);
+                    break;
+                case 3:
+                    choice = false;
+                    break;
+            }
         }
     }
 

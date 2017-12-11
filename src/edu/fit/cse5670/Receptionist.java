@@ -8,19 +8,25 @@ import java.util.Scanner;
 public class Receptionist extends Employee {
     @Override
     public void startEmployeeSession(Scanner scn) {
-        System.out.print("1) Add new Patient\n2) Retrieve Patient Data\n3) Print Patient Record\n\nEnter choice: ");
-        int option = scn.nextInt();
-        scn.nextLine();
-        switch (option){
-            case 1:
-                addNewPatient(scn);
-                break;
-            case 2:
-                RetrievePatientData(scn);
-                break;
-            case 3:
-                printRecord(scn);
-                break;
+
+        boolean choice = true;
+        while(choice) {
+            System.out.print("1) Add new Patient\n2) Retrieve Patient Data\n3) Print Patient Record\n4) Log out\n\nEnter choice: ");
+            int option = scn.nextInt();
+            scn.nextLine();
+            switch (option) {
+                case 1:
+                    addNewPatient(scn);
+                    break;
+                case 2:
+                    RetrievePatientData(scn);
+                    break;
+                case 3:
+                    printRecord(scn);
+                    break;
+                case 4:
+                    choice = false;
+            }
         }
     }
 
@@ -80,7 +86,7 @@ public class Receptionist extends Employee {
         //save patient in database
         int patientID = QueryBuilder.insertPatient(patient);
         patient.setPatientID(patientID);
-        System.out.println("Created Patiend ID: " + patientID);
+        System.out.println("Created Patiend ID: " + patientID+ "\n");
     }
 
 }

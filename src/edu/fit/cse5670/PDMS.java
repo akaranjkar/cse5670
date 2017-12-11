@@ -14,13 +14,15 @@ public class PDMS {
     }
 
     public static void main(String[] args){
-        Scanner scn = new Scanner(System.in);
-        System.out.println("Username: ");
-        String username = scn.nextLine();
-        System.out.println("Password: ");
-        String password = scn.nextLine();
+        while(true) {
+            Scanner scn = new Scanner(System.in);
+            System.out.println("Username: ");
+            String username = scn.nextLine();
+            System.out.println("Password: ");
+            String password = scn.nextLine();
 
-        Employee employee = EmployeeFactory.getInstance().authenticateEmployee(username, password);
-        employee.startEmployeeSession(scn);
+            Employee employee = EmployeeFactory.getInstance().authenticateEmployee(username, password);
+            employee.startEmployeeSession(scn);
+        }
     }
 }

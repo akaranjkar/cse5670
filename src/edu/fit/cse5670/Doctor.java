@@ -16,19 +16,24 @@ public class Doctor extends Employee{
 
     @Override
     public void startEmployeeSession(Scanner scn) {
-        System.out.println("1) Add assessment to session\n2) Update main diagnosis\n3) Print Patient Record\n");
-        int option = scn.nextInt();
-        scn.nextLine();
-        switch (option){
-            case 1:
-                editSession(scn);
-                break;
-            case 2:
-                updateDiagnosis(scn);
-                break;
-            case 3:
-                printRecord(scn);
-                break;
+        boolean choice = true;
+        while(choice) {
+            System.out.println("1) Add assessment to session\n2) Update main diagnosis\n3) Print Patient Record\n4) Log out\n\nEnter choice: ");
+            int option = scn.nextInt();
+            scn.nextLine();
+            switch (option) {
+                case 1:
+                    editSession(scn);
+                    break;
+                case 2:
+                    updateDiagnosis(scn);
+                    break;
+                case 3:
+                    printRecord(scn);
+                    break;
+                case 4:
+                    choice = false;
+            }
         }
     }
 
