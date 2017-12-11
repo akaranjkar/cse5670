@@ -45,7 +45,7 @@ public class QueryBuilder {
         int role = -1;
         String specialization = "";
         if(employee instanceof Doctor){
-            role = EmployeeFactory.DOCTOR;
+            role =EmployeeFactory.DOCTOR;
             specialization = ((Doctor) employee).getSpecialization();
         }else if(employee instanceof Nurse){
             role = EmployeeFactory.NURSE;
