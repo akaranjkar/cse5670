@@ -21,6 +21,7 @@ insert into login values (100001, 'james',123456);
 insert into login values (100002, 'jason',123456);
 insert into login values (100003, 'miley',123456);
 insert into login values (100004, 'clone',123456);
+insert into login values (100005, 'will',123456);
 
 insert into policy(provider,startdate,enddate) values ('ABC', '2017-01-01','2018-01-01');
 insert into policy(provider,startdate,enddate) values ('XYZ', '2017-06-01','2018-06-01');
