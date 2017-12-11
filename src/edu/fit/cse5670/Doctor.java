@@ -25,8 +25,10 @@ public class Doctor extends Employee{
                 break;
             case 2:
                 updateDiagnosis(scn);
+                break;
             case 3:
                 printRecord(scn);
+                break;
         }
     }
 
