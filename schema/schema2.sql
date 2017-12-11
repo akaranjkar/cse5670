@@ -94,5 +94,5 @@ CREATE TABLE sessions (
     
     
     PRIMARY KEY (sessionID,conditionID),
-    FOREIGN KEY (conditionID) REFERENCES condition_(conditionID),
+    FOREIGN KEY (conditionID) REFERENCES condition_(conditionID)
 );
