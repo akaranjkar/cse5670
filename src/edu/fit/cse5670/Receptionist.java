@@ -17,9 +17,10 @@ public class Receptionist extends Employee {
                 break;
             case 2:
                 RetrievePatientData(scn);
+                break;
             case 3:
                 printRecord(scn);
-
+                break;
         }
     }
 
@@ -27,6 +28,7 @@ public class Receptionist extends Employee {
     private void RetrievePatientData(Scanner scn) {
         System.out.println("Enter patient ID: ");
         int patientID = scn.nextInt();
+        scn.nextLine();
         Patient patient = QueryBuilder.getPatient(patientID);
         System.out.println("Start consultation for a new condition: Y/N ");
         String choice = scn.nextLine();
@@ -37,7 +39,8 @@ public class Receptionist extends Employee {
             int conditionID = QueryBuilder.insertCondition(condition, patientID);
             condition.setConditionID(conditionID);
             //add condition to patient
-            patient.addContion(condition);
+            patient.addCondition(condition);
+            System.out.println("ConditionID: " + conditionID);
         }else{
             List<Condition> openConditions = QueryBuilder.getConditions(patientID, false);
             Iterator<Condition> iterator = openConditions.iterator();
@@ -50,6 +53,7 @@ public class Receptionist extends Employee {
             }
             int index = scn.nextInt();
             condition = openConditions.get(index - 1);
+            System.out.println("ConditionID:" + condition.getConditionID());
         }
         //TODO what to do with the condition???
 

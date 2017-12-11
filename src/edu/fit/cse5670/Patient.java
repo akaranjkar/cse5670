@@ -19,7 +19,7 @@ public class Patient extends Person {
 
     }
 
-    public void addContion(Condition condition){
+    public void addCondition(Condition condition){
         conditions.add(condition);
     }
 
