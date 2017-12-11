@@ -83,12 +83,12 @@ public class DBManager {
             stmt = conn.prepareStatement(sql.toString());
             stmt.setInt(1, conditionID);
             stmt.setDate(2, new java.sql.Date(session.getDate().getTime()));
-            stmt.setString(3, session.getAssessment().getDiagnosis());
-            stmt.setInt(4, session.getDoctorID());
+            stmt.setString(3, session.getAssessment()==null?"":session.getAssessment().getDiagnosis());
+            stmt.setInt(4, session.getDoctorID()==null?-1:session.getDoctorID());
             stmt.setInt(5, session.getNurseID());
-            stmt.setString(6, session.getAssessment().getSymptoms());
-            stmt.setString(7, session.getAssessment().getDiagnosis());
-            stmt.setString(8, session.getAssessment().getRecommendations());
+            stmt.setString(6, session.getAssessment()==null?"":session.getAssessment().getSymptoms());
+            stmt.setString(7, session.getAssessment()==null?"":session.getAssessment().getDiagnosis());
+            stmt.setString(8, session.getAssessment()==null?"":session.getAssessment().getRecommendations());
             stmt.setDouble(9, session.getVitals().getHeight());
             stmt.setDouble(10, session.getVitals().getWeight());
             stmt.setDouble(11, session.getVitals().getTemperature());

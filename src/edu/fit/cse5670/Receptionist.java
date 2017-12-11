@@ -47,7 +47,7 @@ public class Receptionist extends Employee {
             int i = 1;
             while(iterator.hasNext()){
                 Condition cond = iterator.next();
-                StringBuilder sb = new StringBuilder(i).append(") ID: ").append(cond.getConditionID()).append(" ").append(cond.getMainDiagnosis());
+                StringBuilder sb = new StringBuilder().append(i).append(") ID: ").append(cond.getConditionID()).append(" ").append(cond.getMainDiagnosis());
                 System.out.println(sb.toString());
                 i++;
             }
