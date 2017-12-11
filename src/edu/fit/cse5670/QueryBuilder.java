@@ -253,4 +253,9 @@ public class QueryBuilder {
         return patientID;
 
     }
+
+    public static void deleteEmployee(int employeeID) {
+        StringBuilder query = new StringBuilder("delete from employee where employeeID= "+employeeID);
+        DBManager.updateQuery(query);
+    }
 }
