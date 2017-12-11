@@ -11,7 +11,6 @@ CREATE TABLE employee (
     lastname varchar(25),
     firstname varchar(25),
     address varchar(30),
-    city varchar(10) ,
     phone varchar(17),
     salary double,
     specialization varchar(20) ,

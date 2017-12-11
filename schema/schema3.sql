@@ -1,17 +1,17 @@
-insert into employee(role,dob,age,lastname,firstname,address,city,phone,salary,specialization) 
-  values (1,'1980-07-21', 32,'Dsouza','Moses','298 Topi st', 'Miami','+1(321)616-2928','100000','anesthesiologist');
+insert into employee(role,dob,age,lastname,firstname,address,phone,salary,specialization)
+  values (1,'1980-07-21', 32,'Dsouza','Moses','298 Topi st', '+1(321)616-2928','100000','anesthesiologist');
 
-insert into employee(role,dob,age,lastname,firstname,address,city,phone,salary,specialization)
-  values (1,'1985-11-01',42,'Elliot','James','227 Query st', 'Tampa','+1(381)111-2928','200000','surgeon');
+insert into employee(role,dob,age,lastname,firstname,address,phone,salary,specialization)
+  values (1,'1985-11-01',42,'Elliot','James','227 Query st','+1(381)111-2928','200000','surgeon');
 
-insert into employee(role,dob,age,lastname,firstname,address,city,phone,salary,specialization)
-  values (1,'1975-03-29', 46,'Bourne','Jason','876 Proxy st', 'Atlanta','+1(987)616-9999','150000','physician');
+insert into employee(role,dob,age,lastname,firstname,address,phone,salary,specialization)
+  values (1,'1975-03-29', 46,'Bourne','Jason','876 Proxy st','+1(987)616-9999','150000','physician');
 
-insert into employee(role,dob,age,lastname,firstname,address,city,phone,salary,specialization)
-  values (3,'1993-01-21',24,'Cyrus','Miley','112 Hack st', 'Keywest','+1(535)000-9999','80000','physician');
+insert into employee(role,dob,age,lastname,firstname,address,phone,salary,specialization)
+  values (3,'1993-01-21',24,'Cyrus','Miley','112 Hack st','+1(535)000-9999','80000','physician');
 
-insert into employee(role,dob,age,lastname,firstname,address,city,phone,salary,specialization)
-  values (2,'1990-02-05',18,'Clone','Clone','876 Mary st', 'Atlanta','+1(767)101-1234','50000','null');
+insert into employee(role,dob,age,lastname,firstname,address,phone,salary,specialization)
+  values (2,'1990-02-05',18,'Clone','Clone','876 Mary st','+1(767)101-1234','50000','null');
 
 insert into login values (100000, 'moses',123456);
 insert into login values (100001, 'james',123456);
