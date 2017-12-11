@@ -1,6 +1,7 @@
 package edu.fit.cse5670;
 
 
+import javax.print.Doc;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,10 +38,22 @@ public class QueryBuilder {
         return patientID;
     }
 
-    public static int insertEmployee(Employee employee, int role, String specialization) {
+    public static int insertEmployee(Employee employee) {
 
         StringBuilder query;
         query = new StringBuilder("insert into employee(role,dob,age,lastname,firstname,address,phone,salary,specialization) values (?,?,?,?,?,?,?,?,?)");
+        int role = -1;
+        String specialization = "";
+        if(employee instanceof Doctor){
+            role = EmployeeFactory.DOCTOR;
+            specialization = ((Doctor) employee).getSpecialization();
+        }else if(employee instanceof Nurse){
+            role = EmployeeFactory.NURSE;
+        }else if(employee instanceof Receptionist){
+            role = EmployeeFactory.RECEPTIONIST;
+        }else if(employee instanceof Administrator){
+            role = EmployeeFactory.ADMINISTRATOR;
+        }
         int employeeID= DBManager.insertEmployee(query, employee,role,specialization);
         return employeeID;
     }
@@ -155,9 +168,9 @@ public class QueryBuilder {
         return sessionID;
     }
 
-    public static int updateSession(Session session, int conditionID) {
+    public static int updateSession(Session session) {
         StringBuilder query = new StringBuilder("update sessions set conditionID=?,visitdate=?,assessment=?,doctorID=?,nurseID=?,symptoms=?,diagnosis =?,recommendation=?,height=?,weight=?,bodytemp=?,bphigh=?,bplow=?,pulse=?) where sessionID="+session.getSessionID());
-
+        int conditionID = getConditionIDFromSessionID(session.getSessionID());
         int sessionID= DBManager.updateSession(query, session,conditionID);
 
         return sessionID;
