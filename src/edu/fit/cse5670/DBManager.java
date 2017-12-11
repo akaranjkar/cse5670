@@ -129,4 +129,36 @@ public class DBManager {
             se.printStackTrace();
         }//end finally try
     }
+
+    public static int insertPatient(StringBuilder query, Patient patient) {
+        Connection conn = null;
+        PreparedStatement stmt= null;
+        try {
+            conn = ConnectionFactory.getConnection();
+            stmt = conn.prepareStatement(query.toString());
+            stmt.setDate(1,new java.sql.Date(patient.getDob().getTime()));
+            stmt.setInt(2,patient.getAge());
+            stmt.setString(3,patient.getLastName());
+            stmt.setString(4,patient.getFirstName());
+            stmt.setString(5,patient.getAddress());
+            stmt.setString(6,patient.getPhone());
+            stmt.setInt(7,patient.getPolicy().getPolicyID());
+            stmt.executeUpdate();
+
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    patient.setPatientID(generatedKeys.getInt(1));
+                }
+            }
+        } catch (SQLException se) {
+            //Handle errors for JDBC
+            System.out.println("Error adding condition: "+se.getErrorCode());
+            return -1;
+        } finally {
+            //finally block used to close resources
+            closeConnection(conn,stmt);
+        }//end try
+        return patient.getPatientID();
+
+    }
 }

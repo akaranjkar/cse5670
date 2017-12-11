@@ -24,14 +24,14 @@ insert into policy(provider,startdate,enddate) values ('XYZ', '2017-06-01','2018
 insert into policy(provider,startdate,enddate) values ('MUYB', '2017-09-15','2018-09-15');
 insert into policy(provider,startdate,enddate) values ('XYZ', '2017-07-01','2018-07-01');
 
-insert into patient(dob,age,lastname,firstname,address,city,phone,policyID) values
-('1980-07-21', 32,'Hobbs','Matt','111 Time st', 'Miami','+1(321)616-2928',20170002);
-insert into patient(dob,age,lastname,firstname,address,city,phone,policyID) values
-('1970-11-01', 42,'Jobs','Steve','Mary star st', 'Long Beach','+1(321)616-2928',20170001);
-insert into patient(dob,age,lastname,firstname,address,city,phone,policyID) values
-('1990-07-12', 25,'Place','Lovely','625 Stark st', 'Miami','+1(321)616-2928',20170003);
-insert into patient(dob,age,lastname,firstname,address,city,phone,policyID) values
-('1991-06-17', 24,'','Precious','928 Youre st', 'Miami','+1(321)121-2112',20170000);
+insert into patient(dob,age,lastname,firstname,address,phone,policyID) values
+('1980-07-21', 32,'Hobbs','Matt','111 Time st','+1(321)616-2928',20170002);
+insert into patient(dob,age,lastname,firstname,address,phone,policyID) values
+('1970-11-01', 42,'Jobs','Steve','Mary star st','+1(321)616-2928',20170001);
+insert into patient(dob,age,lastname,firstname,address,phone,policyID) values
+('1990-07-12', 25,'Place','Lovely','625 Stark st','+1(321)616-2928',20170003);
+insert into patient(dob,age,lastname,firstname,address,phone,policyID) values
+('1991-06-17', 24,'','Precious','928 Youre st','+1(321)121-2112',20170000);
 
 
 

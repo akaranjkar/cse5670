@@ -28,6 +28,15 @@ public class QueryBuilder {
         return patient;
     }
 
+    public static int insertPatient(Patient patient) {
+
+        StringBuilder query;
+        query = new StringBuilder("insert into patient(dob,age,lastname,firstname,address,phone,policyID) values \n" +
+                "(?,?,?,?,?,?,?)");
+        int patientID= DBManager.insertPatient(query, patient);
+        return patientID;
+    }
+
     public static Doctor getDoctor(int empID) {
         Doctor employee = null;
 
