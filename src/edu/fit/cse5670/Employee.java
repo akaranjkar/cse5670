@@ -81,7 +81,7 @@ public abstract class Employee extends Person {
                 sb.append("    Pulse: ").append(vitals.getPulseRate()).append("\n");
                 Assessment assessment = session.getAssessment();
                 sb.append("    Assessment:\n    Symptoms: ").append(assessment.getSymptoms()).append("\n");
-                sb.append("    Diagnosis: ").append(assessment.getDiagnosis()).append("n");
+                sb.append("    Diagnosis: ").append(assessment.getDiagnosis()).append("\n");
                 sb.append("    Recommendation: ").append(assessment.getRecommendations()).append("\n");
             }
         }

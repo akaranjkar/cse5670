@@ -80,6 +80,7 @@ public class Receptionist extends Employee {
         //save patient in database
         int patientID = QueryBuilder.insertPatient(patient);
         patient.setPatientID(patientID);
+        System.out.println("Created Patiend ID: " + patientID);
     }
 
 }
