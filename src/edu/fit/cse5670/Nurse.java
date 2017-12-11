@@ -17,12 +17,6 @@ public class Nurse extends Employee {
         }
     }
 
-    private void printRecord(Scanner scn) {
-        System.out.println("Enter patient ID: ");
-        int patientID = scn.nextInt();
-        Patient patient = QueryBuilder.getPatient(patientID);
-        //TODO print data
-    }
 
     private void startSession(Scanner scn) {
         System.out.println("Enter Condition ID: ");

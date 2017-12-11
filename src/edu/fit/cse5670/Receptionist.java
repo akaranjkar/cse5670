@@ -22,35 +22,6 @@ public class Receptionist extends Employee {
         }
     }
 
-    private void printRecord(Scanner scn) {
-        System.out.println("Enter patient ID: ");
-        int patientID = scn.nextInt();
-        Patient patient = QueryBuilder.getPatient(patientID);
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("PatientName: ").append(patient.getFirstName()).append(" ").append(patient.getLastName()).append("\n");
-        sb.append("Patient ID: ").append(patient.patientID).append("\n");
-        sb.append("Patient address").append(patient.getAddress()).append("\n\n");
-        sb.append("Conditions:\n");
-        Iterator<Condition> conditionIterator = patient.getConditions().iterator();
-        while(conditionIterator.hasNext()){
-            Condition condition = conditionIterator.next();
-            sb.append("  Condition ID: ").append(condition.getConditionID()).append("\n");
-            sb.append("  Main diagnosis: ").append(condition.getMainDiagnosis()).append("\n\n");
-            sb.append("  Sessions:\n");
-            Iterator<Session> sessionIterator = condition.getSessions().iterator();
-            while(sessionIterator.hasNext()){
-                Session session = sessionIterator.next();
-                sb.append("    Session ID: ").append(session.getSessionID()).append("\n");
-                Doctor doctor = (Doctor) QueryBuilder.getEmployee(session.getDoctorID());
-                sb.append("    Doctor in charge: ").append(doctor.getFirstName()).append(" ").append(doctor.getLastName()).append("\n");
-                Nurse nurse = (Nurse) QueryBuilder.getEmployee(session.getNurseID());
-                sb.append("    Nurse in charge: ").append(nurse.getFirstName()).append(" ").append(nurse.getLastName()).append("\n");
-
-            }
-        }
-        System.out.println(sb.toString());
-    }
 
     private void RetrievePatientData(Scanner scn) {
         System.out.println("Enter patient ID: ");
