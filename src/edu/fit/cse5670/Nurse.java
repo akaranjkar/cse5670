@@ -42,6 +42,7 @@ public class Nurse extends Employee {
         int sessionID = QueryBuilder.insertSession(session, conditionID);
         session.setSessionID(sessionID);
         condition.addSession(session);
+        System.out.println("Created Session ID: "+sessionID);
         scn.nextLine();
     }
 }

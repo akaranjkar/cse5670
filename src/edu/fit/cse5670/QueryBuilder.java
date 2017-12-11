@@ -185,7 +185,7 @@ try {
         Connection conn = null;
         int conditionID=0;
         try{
-            StringBuilder query = new StringBuilder("update condition_ set patientID=?,maindiagnosis=?,closed=?) where conditionID="+condition.getConditionID());
+            StringBuilder query = new StringBuilder("update condition_ set patientID=?,maindiagnosis=?,closed=? where conditionID="+condition.getConditionID());
 
             int patientID = getPatientIDFromConditionID(conn,condition.getConditionID());
             conditionID= DBManager.updateCondition(query, condition,patientID);
@@ -219,7 +219,7 @@ try {
         Connection conn = null;
         int sessionID;
         try {
-            StringBuilder query = new StringBuilder("update sessions set conditionID=?,visitdate=?,assessment=?,doctorID=?,nurseID=?,symptoms=?,diagnosis =?,recommendation=?,height=?,weight=?,bodytemp=?,bphigh=?,bplow=?,pulse=?) where sessionID="+session.getSessionID());
+            StringBuilder query = new StringBuilder("update sessions set conditionID=?,visitdate=?,assessment=?,doctorID=?,nurseID=?,symptoms=?,diagnosis =?,recommendation=?,height=?,weight=?,bodytemp=?,bphigh=?,bplow=?,pulse=? where sessionID="+session.getSessionID());
             int conditionID = getConditionIDFromSessionID(session.getSessionID());
             sessionID= DBManager.updateSession(conn, query, session,conditionID);
         }finally {
