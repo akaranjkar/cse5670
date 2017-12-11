@@ -17,7 +17,7 @@ public class ConnectionFactory {
 
     // Database credentials
     static final String USER = "root";
-    static final String PASS = "group14";
+    static final String PASS = "root";
 
 
 

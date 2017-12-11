@@ -56,8 +56,8 @@ public abstract class Employee extends Person {
 
         StringBuilder sb = new StringBuilder();
         sb.append("PatientName: ").append(patient.getFirstName()).append(" ").append(patient.getLastName()).append("\n");
-        sb.append("Patient ID: ").append(patient.patientID).append("\n");
-        sb.append("Patient address").append(patient.getAddress()).append("\n\n");
+        sb.append("Patient ID: ").append(patient.getPatientID()).append("\n");
+        sb.append("Patient address: ").append(patient.getAddress()).append("\n\n");
         sb.append("Conditions:\n");
         Iterator<Condition> conditionIterator = patient.getConditions().iterator();
         while(conditionIterator.hasNext()){
