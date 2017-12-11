@@ -37,6 +37,14 @@ public class QueryBuilder {
         return patientID;
     }
 
+    public static int insertEmployee(Employee employee, int role, String specialization) {
+
+        StringBuilder query;
+        query = new StringBuilder("insert into employee(role,dob,age,lastname,firstname,address,phone,salary,specialization) values (?,?,?,?,?,?,?,?,?)");
+        int employeeID= DBManager.insertEmployee(query, employee,role,specialization);
+        return employeeID;
+    }
+
     public static Doctor getDoctor(int empID) {
         Doctor employee = null;
 
