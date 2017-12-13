@@ -11,14 +11,6 @@ import java.util.Properties;
 public class ConnectionFactory {
     public static Connection connection = null;
 
-//    // JDBC driver name and database URL
-//    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-//    static final String DB_URL = "jdbc:mysql://localhost/clinicsys";
-//
-//    // Database credentials
-//    static final String USER = "root";
-//    static final String PASS = "group14";
-
 
     static String JDBC_DRIVER , DB_URL , USER ,PASS;
 

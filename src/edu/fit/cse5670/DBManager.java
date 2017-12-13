@@ -5,24 +5,8 @@ import java.sql.*;
 
 public class DBManager {
 
-    public static void main(String[] args) {
-        Connection conn = null;
-        StringBuilder query = new StringBuilder("select * from login where username=\'moses\'");
-        try {
-        ResultSet rs = getQuery(conn, query);
-            while (rs.next()){
-                System.out.println("Emp ID = "+rs.getString("employeeID"));
-            }
-        } catch (SQLException se) {
-            //Handle errors for JDBC
-            se.printStackTrace();
-        }
-    }
-
-
     public static ResultSet getQuery(Connection conn,StringBuilder sql) {
         ResultSet rs = null;
-//        Connection conn = null;
         Statement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
@@ -39,7 +23,6 @@ public class DBManager {
 
 
     public static void updateQuery(Connection conn, StringBuilder sql) {
-//        Connection conn = null;
         PreparedStatement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
@@ -76,7 +59,6 @@ public class DBManager {
     }
 
     public static int updateSession(Connection conn, StringBuilder sql, Session session, int conditionID) {
-//        Connection conn = null;
         PreparedStatement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
@@ -113,7 +95,6 @@ public class DBManager {
 
 
     public static int insertPatient(Connection conn, StringBuilder query, Patient patient) {
-//        Connection conn = null;
         PreparedStatement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
@@ -142,7 +123,6 @@ public class DBManager {
     }
 
     public static int insertEmployee(Connection conn, StringBuilder query, Employee employee, int role, String specialization) {
-//        Connection conn = null;
         PreparedStatement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
