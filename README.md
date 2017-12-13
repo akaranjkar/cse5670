@@ -1,6 +1,6 @@
 # Patient Data Management System
 
-One Paragraph of project description goes here
+Patient Data Management is a challenging problem in healthcare. Everyday, a lot of new data about patient health, symptoms, diagnosis and recommendations is generated with each new visit across clinics in the country. Information Technology enables simplified management of newly generated patient data. Storing and retrieving large amounts of data is a common pattern in Information Technology systems. These solutions can be leveraged for efficiently storing current patient data and archival of patient records. This makes it easy to share medical history with patients and redact information before submitting patient history for research and other studies. The motivation of our project was to try and implement such a system for a Patient Data Management System that is localized to a single clinic.
 
 ## Getting Started
 
@@ -37,12 +37,6 @@ Once the database is set up, run the files:
 | Nurse         | clone         | 123456 |
 | Doctor        | jason         | 123456 |
 
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Group
 
