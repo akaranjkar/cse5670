@@ -33,16 +33,25 @@ public class Doctor extends Employee{
                     break;
                 case 4:
                     choice = false;
+                    break;
             }
         }
     }
 
 
     private void updateDiagnosis(Scanner scn) {
-        System.out.println("Enter session ID:");
-        int sessionID = scn.nextInt();
-        scn.nextLine();
-        Condition condition = QueryBuilder.getCondition(QueryBuilder.getConditionIDFromSessionID(sessionID));
+        int sessionID, conditionID;
+        do {
+            System.out.println("Enter session ID:");
+            sessionID = scn.nextInt();
+            scn.nextLine();
+            conditionID = QueryBuilder.getConditionIDFromSessionID(sessionID);
+            if(conditionID == -1){
+                System.out.println("Session " + sessionID + " does not exist");
+            }
+        }while(conditionID >=0);
+
+        Condition condition = QueryBuilder.getCondition(conditionID);
 
         System.out.println("Enter main diagnosis");
         String mainDiagnosis = scn.nextLine();
@@ -51,10 +60,16 @@ public class Doctor extends Employee{
     }
 
     private void editSession(Scanner scn) {
-        System.out.println("Enter session ID:");
-        int sessionID = scn.nextInt();
-        scn.nextLine();
-        Session session = QueryBuilder.getSession(sessionID);
+        Session session;
+        do {
+            System.out.println("Enter session ID:");
+            int sessionID = scn.nextInt();
+            scn.nextLine();
+            session = QueryBuilder.getSession(sessionID);
+            if(session == null){
+                System.out.println("Session " + sessionID + " does not exist");
+            }
+        }while(session == null);
         System.out.println("Enter symptoms:");
         String symptoms = scn.nextLine();
         System.out.println("Enter diagnosis:");

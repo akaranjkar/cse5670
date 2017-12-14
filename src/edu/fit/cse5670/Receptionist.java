@@ -32,10 +32,17 @@ public class Receptionist extends Employee {
 
 
     private void RetrievePatientData(Scanner scn) {
-        System.out.println("Enter patient ID: ");
-        int patientID = scn.nextInt();
-        scn.nextLine();
-        Patient patient = QueryBuilder.getPatient(patientID);
+        Patient patient = null;
+        int patientID = 0;
+        do {
+            System.out.println("Enter patient ID: ");
+            patientID = scn.nextInt();
+            scn.nextLine();
+            patient = QueryBuilder.getPatient(patientID);
+            if(patient == null){
+                System.out.println("Patient not found");
+            }
+        }while(patient == null);
         System.out.println("Start consultation for a new condition: Y/N ");
         String choice = scn.nextLine();
         Condition condition;
@@ -49,6 +56,10 @@ public class Receptionist extends Employee {
             System.out.println("ConditionID: " + conditionID);
         }else{
             List<Condition> openConditions = QueryBuilder.getConditions(patientID, false);
+            if(openConditions == null || openConditions.isEmpty()){
+                System.out.println("No ongoing conditions for this patient");
+                return;
+            }
             Iterator<Condition> iterator = openConditions.iterator();
             int i = 1;
             while(iterator.hasNext()){
@@ -61,7 +72,7 @@ public class Receptionist extends Employee {
             condition = openConditions.get(index - 1);
             System.out.println("ConditionID:" + condition.getConditionID());
         }
-        //TODO what to do with the condition???
+
 
     }
 
@@ -73,15 +84,18 @@ public class Receptionist extends Employee {
         System.out.print("Address: ");
         String address = scn.nextLine();
         System.out.print("Date of Birth: ");
-        Date date = parseDate(scn.nextLine());
+        Date date = parseDate(scn.nextLine(), scn);
         System.out.print("Phone Number: ");
         String phoneNumber = scn.nextLine();
-        System.out.println("Policy Information");
-        System.out.print("PolicyID: ");
-        int policyID = scn.nextInt();
-        scn.nextLine();
+        System.out.println("\nPolicy Information");
+        HCPolicy policy = null;
+        do {
+            System.out.print("PolicyID: ");
+            int policyID = scn.nextInt();
+            scn.nextLine();
 
-        HCPolicy policy = QueryBuilder.getPolicy(policyID);
+            policy = QueryBuilder.getPolicy(policyID);
+        }while(policy == null);
         Patient patient = new Patient(firstName, lastName, address, date, phoneNumber, policy);
         //save patient in database
         int patientID = QueryBuilder.insertPatient(patient);

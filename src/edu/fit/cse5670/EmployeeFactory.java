@@ -44,7 +44,7 @@ public class EmployeeFactory {
     }
 
     public Employee authenticateEmployee(String username, String password) {
-        //TODO get employee info from DB
+
         Connection conn =null;
         int tempType = 0;
         try {
@@ -71,7 +71,7 @@ public class EmployeeFactory {
                     return admin;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Invalid Credentials\n");
         }finally {
             //finally block used to close resources
             closeConnection(conn);

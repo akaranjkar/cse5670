@@ -17,7 +17,11 @@ public class QueryBuilder {
         try {
             StringBuilder query = new StringBuilder("select * from patient where patientID=" + patientID);
             ResultSet rs = DBManager.getQuery(conn, query);
+            if(!rs.isBeforeFirst()){
+                return null;
+            }
             rs.last();
+
             String firstName = rs.getString("firstName");
             String lastName = rs.getString("lastName");
             String address = rs.getString("address");
@@ -109,7 +113,7 @@ try {
 
             policy = new HCPolicy(policyID, provider, expiry);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Invalid Policy ID");
         }finally {
             //finally block used to close resources
             closeConnection(conn);
@@ -127,6 +131,9 @@ try {
                 query.append(" and closed = false");
             }
             ResultSet rs = DBManager.getQuery(conn, query);
+            if(!rs.isBeforeFirst()){
+                return conditions;
+            }
             Condition condition;
             while (rs.next()) {
                 String maindiagnosis = rs.getString("maindiagnosis");
@@ -155,6 +162,9 @@ try {
         try {
             StringBuilder query = new StringBuilder("select * from condition_ where conditionID=" + conditionID);
             ResultSet rs = DBManager.getQuery(conn, query);
+            if(!rs.isBeforeFirst()){
+                return condition;
+            }
             rs.last();
             String maindiagnosis = rs.getString("maindiagnosis");
             boolean closed = rs.getBoolean("closed");
@@ -256,6 +266,9 @@ try {
         try {
             StringBuilder query = new StringBuilder("select * from sessions where sessionID=" + sessionID);
             ResultSet rs = DBManager.getQuery(conn, query);
+            if(!rs.isBeforeFirst()){
+                return session;
+            }
             rs.last();
             session = buildSession(rs);
         } catch (SQLException e) {
@@ -294,8 +307,12 @@ try {
         Connection conn = null;
         StringBuilder query = new StringBuilder("select conditionID from sessions where sessionID=" + sessionID);
         ResultSet rs = DBManager.getQuery(conn, query);
+
         int conditionID = 0;
         try {
+            if(!rs.isBeforeFirst()){
+               return -1;
+            }
             rs.last();
             conditionID = rs.getInt("conditionID");
         } catch (SQLException e) {

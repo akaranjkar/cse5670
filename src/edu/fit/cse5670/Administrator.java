@@ -36,7 +36,7 @@ public class Administrator extends Employee {
         System.out.println("Address: ");
         String address = scn.nextLine();
         System.out.println("Date of Birth: ");
-        Date date = parseDate(scn.nextLine());
+        Date date = parseDate(scn.nextLine(),scn);
         System.out.println("Phone Number: ");
         String phoneNumber = scn.nextLine();
         System.out.println("Salary: ");

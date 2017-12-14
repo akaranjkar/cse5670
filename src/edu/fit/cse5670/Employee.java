@@ -38,21 +38,33 @@ public abstract class Employee extends Person {
         this.fullTime = fullTime;
     }
 
-    protected Date parseDate(String dateString){
+    protected Date parseDate(String dateString, Scanner scn) {
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         Date date = null;
-        try{
-            date = df.parse(dateString);
-        }catch(ParseException e){
-            e.printStackTrace();
-        }
+        do {
+            try {
+                date = df.parse(dateString);
+            } catch (ParseException e) {
+                System.out.println("Invalid date format. Please enter date in the form yyyy/MM/dd");
+                System.out.print("Date of Birth: ");
+                dateString = scn.nextLine();
+            }
+        }while(date == null);
+
         return date;
     }
 
     protected void printRecord(Scanner scn) {
-        System.out.println("Enter patient ID: ");
-        int patientID = scn.nextInt();
-        Patient patient = QueryBuilder.getPatient(patientID);
+        Patient patient = null;
+        int patientID = 0;
+        do {
+            System.out.println("Enter patient ID: ");
+            patientID = scn.nextInt();
+            patient = QueryBuilder.getPatient(patientID);
+            if(patient == null){
+                System.out.println("Patient not found");
+            }
+        }while(patient == null);
 
         StringBuilder sb = new StringBuilder();
         sb.append("PatientName: ").append(patient.getFirstName()).append(" ").append(patient.getLastName()).append("\n");

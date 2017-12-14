@@ -22,7 +22,9 @@ public class PDMS {
             String password = scn.nextLine();
 
             Employee employee = EmployeeFactory.getInstance().authenticateEmployee(username, password);
-            employee.startEmployeeSession(scn);
+            if(employee != null) {
+                employee.startEmployeeSession(scn);
+            }
         }
     }
 }

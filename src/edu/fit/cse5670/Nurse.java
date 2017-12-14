@@ -27,9 +27,16 @@ public class Nurse extends Employee {
 
 
     private void startSession(Scanner scn) {
-        System.out.println("Enter Condition ID: ");
-        int conditionID = scn.nextInt();
-        Condition condition = QueryBuilder.getCondition(conditionID);
+        Condition condition = null;
+        int conditionID;
+        do {
+            System.out.println("Enter Condition ID: ");
+            conditionID = scn.nextInt();
+            condition = QueryBuilder.getCondition(conditionID);
+            if(condition == null){
+                System.out.println("Condition " + conditionID + " does not exist");
+            }
+        }while(condition == null);
         Session session = new Session(new Date(), getEmployeeID());
         System.out.println("Enter height");
         Double height = scn.nextDouble();
